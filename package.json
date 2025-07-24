@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.15.4"
+  }
+}
