@@ -7,6 +7,16 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import bcrypt from 'bcryptjs';
+
+// export const hashPassword = async (password) => {
+//   const salt = await bcrypt.genSalt(10);
+//   return bcrypt.hash(password, salt);
+// };
+
+// export const comparePasswords = async (password, hash) => {
+//     return bcrypt.compare(password, hash);
+// };
 
 import {
   Form,

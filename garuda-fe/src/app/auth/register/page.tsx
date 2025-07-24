@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
@@ -33,6 +34,19 @@ const formSchema = registerFormSchema
 
 export default function RegisterPreview() {
   const router = useRouter()
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleChange = ((e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  })
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,18 +59,57 @@ export default function RegisterPreview() {
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    // try {
+    //   // async
+    //   console.log(values)
+    //   toast(
+    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+    //       <code className="text-white">{JSON.stringify(values, null, 2)}</code>
+    //     </pre>,
+    //   )
+    //   router.push('/dashboard/')
+    // } catch (error) {
+    //   console.error('Form submission error', error)
+    //   toast.error('Failed to submit the form. Please try again.')
+    // }
+
     try {
-      // async
-      console.log(values)
-      toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>,
-      )
-      router.push('/dashboard/')
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success('Account created successfully!');
+
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: ''
+        });
+
+        // Redirect to login or dashboard
+        router.push('/login?message=Registration successful');
+
+      } else {
+        toast.error(data.error || 'Registration failed');
+      }
     } catch (error) {
-      console.error('Form submission error', error)
-      toast.error('Failed to submit the form. Please try again.')
+      console.error('Registration error:', error);
+      toast.error('Something went wrong. Please try again.');
+    } finally {
+      // setIsLoading(false);
     }
   }
 
@@ -95,7 +148,10 @@ export default function RegisterPreview() {
                           <FormItem className="grid gap-2">
                             <FormLabel htmlFor="name">Full Name</FormLabel>
                             <FormControl>
-                              <Input id="name" placeholder="John Doe" {...field} />
+                              <Input id="name" placeholder="John Doe" {...field} 
+                              value={formData.name}
+                              onChange={handleChange}/>
+                              
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -116,6 +172,8 @@ export default function RegisterPreview() {
                                 type="email"
                                 autoComplete="email"
                                 {...field}
+                                value={formData.email}
+                                onChange={handleChange}
                               />
                             </FormControl>
                             <FormMessage />
@@ -136,6 +194,8 @@ export default function RegisterPreview() {
                                 placeholder="********"
                                 autoComplete="new-password"
                                 {...field}
+                                value={formData.password}
+                                onChange={handleChange}
                               />
                             </FormControl>
                             <FormMessage />
@@ -158,6 +218,8 @@ export default function RegisterPreview() {
                                 placeholder="********"
                                 autoComplete="new-password"
                                 {...field}
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
                               />
                             </FormControl>
                             <FormMessage />
@@ -179,9 +241,9 @@ export default function RegisterPreview() {
                 </div>
               </CardContent>
             </Card>
-        </Card>
+          </Card>
+        </div>
       </div>
-    </div>
     </div>
   )
 }

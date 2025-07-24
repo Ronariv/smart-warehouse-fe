@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 bg-primary shadow-sm text-white">
       <div className="w-full max-w-7xl px-4 mx-auto">
-        <div className="flex justify-between h-14 items-center">
+        <div className="flex justify-between h-14 items-center ml-auto">
           <Link href="#"
             prefetch={false}
             className="flex items-center hover:font-bold">
