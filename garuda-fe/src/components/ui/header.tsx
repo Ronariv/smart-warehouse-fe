@@ -59,13 +59,6 @@ export default function Header() {
             >
               Sales
             </Link>
-            <Link
-              href="#"
-              className="font-medium flex items-center text-sm transition-colors hover:underline"
-              prefetch={false}
-            >
-              Menus
-            </Link>
           </nav>
           <div className="flex items-center gap-4">
             <Button className="text-black" onClick={() => router.push('/auth/login')} variant="outline" size="sm">

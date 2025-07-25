@@ -1,6 +1,9 @@
 # Use an official node.js runtime as a parent image
 FROM node:22-alpine
 
+# Install build dependencies for native modules
+RUN apk add --no-cache python3 make g++ postgresql-client
+
 # Set the working directory in the container
 WORKDIR /app
 
@@ -16,9 +19,6 @@ COPY models ./models
 COPY migrations ./migrations
 COPY seeders ./seeders
 
-# Run sequelize migrations (optional, bisa juga di-run saat container start)
-# RUN npx sequelize-cli db:migrate
-
 # Copy the rest of the application code
 COPY . .
 
@@ -26,4 +26,4 @@ COPY . .
 EXPOSE 5003
 
 # Define the command to run your application
-CMD [ "node", "./src/server.js" ]
+CMD [ "node", "./src/server.js" ]
