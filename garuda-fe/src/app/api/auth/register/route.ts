@@ -40,10 +40,11 @@ export async function POST(request: Request) {
     //   password,
     // });
     
+    console.log(name)
     const result = await pool.query(
-      `INSERT INTO users (name, email, password, created_at, updated_at) 
-       VALUES ($1, $2, $3, NOW(), NOW()) 
-       RETURNING id, name, email, created_at`,
+      `INSERT INTO users (name, email, password) 
+       VALUES ($1, $2, $3) 
+       RETURNING id, name, email`,
       [name, email, hashedPassword]
     );
 

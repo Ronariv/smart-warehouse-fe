@@ -7,11 +7,16 @@ import {
   CardAction
 } from '@/components/ui/card'
 
-export default function Estimation() {
+type InsightProps = {
+  title: string,
+  desc: string,
+  child: string[]
+}
+// const Insight = ({ title, desc, child }: InsightProps): JSX.Element => {
+const Insight: React.FC<InsightProps> = ({ title, desc, child }) => {
   return (
-    <div className="w-1/2">
+    <div className="w-full">
       <div className="m-2 p-2 rounded-xl border shadow-sm">
-        {/* <h2 className="p-2 font-bold">Predicted Demand</h2> */}
         <Card>
           <CardHeader>
             <CardTitle>Card Title</CardTitle>
@@ -26,3 +31,5 @@ export default function Estimation() {
     </div>
   )
 }
+
+export default Insight

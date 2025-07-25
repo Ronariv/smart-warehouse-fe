@@ -153,8 +153,12 @@ export default function Statistic() {
   return (
     <div className="w-1/2">
       <div className="m-2 p-2 rounded-xl border shadow-sm">
-        <h2 className="p-2 font-bold">Sales Report</h2>
+        {/* <h2 className="p-2 font-bold">Sales Report</h2> */}
         <Card className="z-50">
+          <CardHeader>
+            <CardTitle>Sales Report</CardTitle>
+            <CardDescription>Report of Sales</CardDescription>
+          </CardHeader>
           <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
             <ChartContainer
               config={chartConfig}
