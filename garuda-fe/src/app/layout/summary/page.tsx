@@ -7,21 +7,26 @@ import {
   CardAction
 } from '@/components/ui/card'
 
-export default function Summary() {
+type SummaryProps = {
+  amount: string,
+  title: string,
+  child: string[]
+}
+// const Insight = ({ title, desc, child }: SummaryProps): JSX.Element => {
+const Summary: React.FC<SummaryProps> = ({ amount, title, child }) => {
   return (
     <div className="w-full">
-      <div className="m-2 p-2 rounded-xl border shadow-sm">
+      <div className="flex">
         <Card>
           <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-            <CardDescription>Card Description</CardDescription>
-            <CardAction>Card Action</CardAction>
+            <CardTitle>{amount}</CardTitle>
+            <CardDescription>{title}</CardDescription>
+            {/* <CardAction>Card Action</CardAction> */}
           </CardHeader>
-          <CardContent>
-            <p>Card Content</p>
-          </CardContent>
         </Card>
       </div>
     </div>
   )
 }
+
+export default Summary

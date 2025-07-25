@@ -154,7 +154,7 @@ export default function Statistic() {
     <div className="w-1/2">
       <div className="m-2 p-2 rounded-xl border shadow-sm">
         {/* <h2 className="p-2 font-bold">Sales Report</h2> */}
-        <Card className="z-50">
+        <Card>
           <CardHeader>
             <CardTitle>Sales Report</CardTitle>
             <CardDescription>Report of Sales</CardDescription>

@@ -19,9 +19,9 @@ const Insight: React.FC<InsightProps> = ({ title, desc, child }) => {
       <div className="m-2 p-2 rounded-xl border shadow-sm">
         <Card>
           <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-            <CardDescription>Card Description</CardDescription>
-            <CardAction>Card Action</CardAction>
+            <CardTitle>{title}</CardTitle>
+            <CardDescription>{desc}</CardDescription>
+            {/* <CardAction>Card Action</CardAction> */}
           </CardHeader>
           <CardContent>
             <p>Card Content</p>
