@@ -7,22 +7,33 @@ import {
   CardAction
 } from '@/components/ui/card'
 
-export default function Estimation() {
+type InsightProps = {
+  bestDay: string,
+  avgTrans: string,
+  avgTransPerDay: string
+}
+const Insight: React.FC<InsightProps> = ({ bestDay, avgTrans, avgTransPerDay }) => {
   return (
     <div className="w-1/2">
       <div className="bg-white m-2 p-2 rounded-xl border shadow-sm">
         {/* <h2 className="p-2 font-bold">Predicted Demand</h2> */}
         <Card>
           <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-            <CardDescription>Card Description</CardDescription>
-            <CardAction>Card Action</CardAction>
+            <CardTitle>Insight</CardTitle>
+            <CardDescription></CardDescription>
+            {/* <CardAction>Card Action</CardAction> */}
           </CardHeader>
           <CardContent>
-            <p>Card Content</p>
+            <ul className='list-disc pl-5'>
+              <li>{ bestDay}</li>
+              <li>{ avgTransPerDay}</li>
+              <li>{ avgTrans}</li>
+            </ul>
           </CardContent>
         </Card>
       </div>
     </div>
   )
 }
+
+export default Insight
