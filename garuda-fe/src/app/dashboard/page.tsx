@@ -3,18 +3,19 @@ import Statistic from '../layout/statistic/page';
 import Estimation from '../layout/estimation/page';
 import Insight from '../layout/insight/page';
 import Summary from '../layout/summary/page';
+import UploadPage from '../components/upload-page/page';
 
 export default function Dashboard() {
   return (
-    <div className='flex h-screen flex-col py-2 px-4'>
+    <div className='flex flex-col py-6 px-40'
+      style={{ backgroundImage: "url('/padang.png')", backgroundSize: "cover", backgroundPosition: "center" }}
+    >
       <Header />
-      <h1 className='mt-16 m-4 font-bold text-2xl'>Dashboard</h1>
+      <h1 className='mt-16 m-4 font-bold text-2xl'></h1>
       <div className='m-2'>
-        <div className="flex flex-row rounded-xl border shadow-sm">
+        <div className="w-full flex flex-row rounded-xl border shadow-sm">
 
-          <Summary amount={"Rp. " + 12345678} title='Jumlah Penghasilan' child={[]} />
-          
-          <Summary amount={"Rp. " + 12345678} title='Jumlah Penghasilan' child={[]} />
+          <Summary title={"XXX total produk terjual dengan omset Rp. XXXXXX "} />
         </div>
       </div>
       <div className='flex flex-row'>
@@ -27,7 +28,7 @@ export default function Dashboard() {
         <Statistic />
       </div>
       <div className='flex w-full flex-row'>
-        aawjndiawudnawoidjawoiajd
+        <UploadPage />
       </div>
 
     </div>

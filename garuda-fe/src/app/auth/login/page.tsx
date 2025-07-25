@@ -71,18 +71,11 @@ export default function LoginPreview() {
   }
 
   return (
-    <div className="flex h-screen">
-      <div className='w-1/2 bg-gray-300/75'>
-        <Image
-          src="/logo.svg"
-          alt="Logo"
-          width={200}
-          height={100}
-          className="object-fit m-3"
-        />
+    <div className="flex h-screen" style={{ backgroundImage: "url('/padang.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <div className='w-1/2'>
       </div>
 
-      <div className='w-1/2 h-full'>
+      <div className='w-1/2 h-full bg-white'>
 
         <div className="flex flex-col min-h-[60vh] min-w-[1/2] h-full w-full items-center justify-center px-4">
           <Card className="outline-none mx-auto max-w-sm outline-none">

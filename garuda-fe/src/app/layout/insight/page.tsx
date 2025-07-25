@@ -16,7 +16,7 @@ type InsightProps = {
 const Insight: React.FC<InsightProps> = ({ title, desc, child }) => {
   return (
     <div className="w-full">
-      <div className="m-2 p-2 rounded-xl border shadow-sm">
+      <div className="m-2 p-2 bg-white rounded-xl border shadow-sm">
         <Card>
           <CardHeader>
             <CardTitle>{title}</CardTitle>

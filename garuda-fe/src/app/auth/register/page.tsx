@@ -34,19 +34,6 @@ const formSchema = registerFormSchema
 
 export default function RegisterPreview() {
   const router = useRouter()
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-
-  const handleChange = ((e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  })
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -74,16 +61,22 @@ export default function RegisterPreview() {
     // }
 
     try {
+      const { confirmPassword, ...payload } = values
+
+      console.log(JSON.stringify(payload, null, 2))
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password
-        }),
+        body: JSON.stringify(
+          payload,
+          null,
+          2
+          // name: formData.name,
+          // email: formData.email,
+          // password: formData.password
+        ),
       });
 
       const data = await response.json();
@@ -91,16 +84,8 @@ export default function RegisterPreview() {
       if (response.ok) {
         toast.success('Account created successfully!');
 
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: ''
-        });
-
         // Redirect to login or dashboard
-        router.push('/login?message=Registration successful');
+        router.push('/dashboard');
 
       } else {
         toast.error(data.error || 'Registration failed');
@@ -114,10 +99,10 @@ export default function RegisterPreview() {
   }
 
   return (
-    <div className="flex h-screen">
-      <div className='w-1/2 bg-gray-300/75'>
+    <div className="flex h-screen" style={{ backgroundImage: "url('/padang.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <div className='w-1/2'>
         <Image
-          src="/logo.svg"
+          src="/logo-gastro.png"
           alt="Logo"
           width={200}
           height={100}
@@ -125,7 +110,7 @@ export default function RegisterPreview() {
         />
       </div>
 
-      <div className='w-1/2 h-full'>
+      <div className='w-1/2 h-full bg-white'>
 
         <div className="flex flex-col min-h-[60vh] min-w-[1/2] h-full w-full items-center justify-center px-4">
           <Card className="outline-none mx-auto max-w-sm outline-none">
@@ -149,8 +134,9 @@ export default function RegisterPreview() {
                             <FormLabel htmlFor="name">Full Name</FormLabel>
                             <FormControl>
                               <Input id="name" placeholder="John Doe" {...field} 
-                              value={formData.name}
-                              onChange={handleChange}/>
+                              // value={formData.name}
+                              // onChange={handleChange}
+                              />
                               
                             </FormControl>
                             <FormMessage />
@@ -172,8 +158,8 @@ export default function RegisterPreview() {
                                 type="email"
                                 autoComplete="email"
                                 {...field}
-                                value={formData.email}
-                                onChange={handleChange}
+                                // value={formData.email}
+                                // onChange={handleChange}
                               />
                             </FormControl>
                             <FormMessage />
@@ -194,8 +180,8 @@ export default function RegisterPreview() {
                                 placeholder="********"
                                 autoComplete="new-password"
                                 {...field}
-                                value={formData.password}
-                                onChange={handleChange}
+                                // value={formData.password}
+                                // onChange={handleChange}
                               />
                             </FormControl>
                             <FormMessage />
@@ -218,8 +204,8 @@ export default function RegisterPreview() {
                                 placeholder="********"
                                 autoComplete="new-password"
                                 {...field}
-                                value={formData.confirmPassword}
-                                onChange={handleChange}
+                                // value={formData.confirmPassword}
+                                // onChange={handleChange}
                               />
                             </FormControl>
                             <FormMessage />

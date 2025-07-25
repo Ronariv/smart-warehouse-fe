@@ -8,23 +8,18 @@ import {
 } from '@/components/ui/card'
 
 type SummaryProps = {
-  amount: string,
   title: string,
-  child: string[]
 }
 // const Insight = ({ title, desc, child }: SummaryProps): JSX.Element => {
-const Summary: React.FC<SummaryProps> = ({ amount, title, child }) => {
+const Summary: React.FC<SummaryProps> = ({ title }) => {
   return (
     <div className="w-full">
-      <div className="flex">
         <Card>
           <CardHeader>
-            <CardTitle>{amount}</CardTitle>
-            <CardDescription>{title}</CardDescription>
+            <CardTitle className='text-center text-2xl'>{title}</CardTitle>
             {/* <CardAction>Card Action</CardAction> */}
           </CardHeader>
         </Card>
-      </div>
     </div>
   )
 }

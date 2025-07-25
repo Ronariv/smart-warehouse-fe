@@ -8,6 +8,9 @@ export async function POST(request: Request) {
   try {
     const { name, email, password } = await request.json();
 
+    console.log(name)
+    console.log(email)
+    console.log(password)
     // Do we still need this
     if (!name || !email || !password) {
       return NextResponse.json(

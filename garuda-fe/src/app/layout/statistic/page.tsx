@@ -152,7 +152,7 @@ export default function Statistic() {
 
   return (
     <div className="w-1/2">
-      <div className="m-2 p-2 rounded-xl border shadow-sm">
+      <div className="m-2 p-2 bg-white rounded-xl border shadow-sm">
         {/* <h2 className="p-2 font-bold">Sales Report</h2> */}
         <Card>
           <CardHeader>

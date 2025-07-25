@@ -10,7 +10,7 @@ import {
 export default function Estimation() {
   return (
     <div className="w-1/2">
-      <div className="m-2 p-2 rounded-xl border shadow-sm">
+      <div className="bg-white m-2 p-2 rounded-xl border shadow-sm">
         {/* <h2 className="p-2 font-bold">Predicted Demand</h2> */}
         <Card>
           <CardHeader>
