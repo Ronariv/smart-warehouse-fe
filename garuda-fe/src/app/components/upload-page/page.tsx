@@ -20,7 +20,6 @@ export default function UploadPage() {
     const formData = new FormData()
     formData.append('file_penjualan', file)
 
-    // TODO change to BE api
     const res = await fetch('http://127.0.0.1:8080/api/insight/' + 'sales', {
       method: 'POST',
       body: formData,
